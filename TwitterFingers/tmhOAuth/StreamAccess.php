@@ -56,6 +56,7 @@ $tweetsArray = json_decode($tweet, true);
 			echo $tweetsArray['user']['screen_name'];
 			echo ': ';
 
+      $duplicates = "RT";
 			//Displays the text of the tweet, followed by a line break
 			echo $tweetsArray['text'] . "<br>" . PHP_EOL; 
 
