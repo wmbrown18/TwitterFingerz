@@ -17,7 +17,7 @@ type="text/javascript">
 
 <center><img src="tf.png" alt="Twitter Fingerz" style="width:459px;height:274px;"></center>
 
-<h2><center>by William Brown III, KENDALL Lane, Emmett Elliott, Telisha Everett, Khadijah Muhammad<center></h2>
+<h2><center>by William Brown III, KENDALL Lane, Emmett Elliott, Telisha Everett, Khadijah Muhammad is amazing!<center></h2>
 </head>
 
 <body>
