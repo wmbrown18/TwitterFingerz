@@ -23,6 +23,52 @@ $tmhOAuth = new tmhOAuthExample();
 //@YahooFinance
 $UsersToFollow = array('follow'    => '2467791, 34713362, 19546277');
 
+function autolink($str, $attributes=array()){
+  $attrs = '';
+  foreach ($attributes as $attribute => $value) {
+    $attrs .= " {$attribute}=\"{$value}\"";
+  }
+  $str = ' ' . $str;
+  $str = preg_replace(
+    '`([^"=\'>])((http|https|ftp)://[^\s<]+[^\s<\.)])`i',
+    '$1<a href="$2"'.$attrs.'>$2</a>',
+    $str
+  );
+  $str = substr($str, 1);
+  
+  return $str;
+}
+
+function getResults($json){
+  $results = array();
+  foreach($json["results"] as $e){
+      //clean up wierd characters
+      $clean = preg_replace('/[^(\x20-\x7F)\x0A]*/','', $e['text']);
+      $text = autolink($clean);
+      $results[] = $text;
+  }
+  return $results;
+}
+
+function removeSimilar($results){
+  $return = array();
+  foreach($results as $a){
+    $check = 0;
+    foreach($results as $b){
+      if($a != $b){
+        similar_text($a, $b, $sim);
+        if($sim > 70){
+          //similarity to other elements based on 70
+          $check = 1; 
+        }
+      }
+    }
+    if($check == 0){
+      $return[] = $a;
+    }
+  }
+  return $return;
+}
 
 
 function my_streaming_callback($data, $length, $metrics) {
@@ -46,20 +92,26 @@ $tweet = $data .PHP_EOL;
 //Transfers json String into an array for easy access
 $tweetsArray = json_decode($tweet, true);
 
+//$results = getResults($tweetsArray);
+//$clean = removeSimilar($results);
 
+/*echo "<ul>";
+foreach($clean as $a){
+     echo "<li>".$a."</li>";
+}
+echo "</ul>";*/
 //foreach($checkUsers as $follows)
 //{
 		//Only stream this tweet if the owner of the tweet matches the user id
 		//if( $tweetsArray['user']['id'] == $follows)
 		//{
 			//Displays the screen name of the user who tweeted
-			echo $tweetsArray['user']['screen_name'];
-			echo ': ';
-
-      $duplicates = "RT";
-			//Displays the text of the tweet, followed by a line break
-			echo $tweetsArray['text'] . "<br>" . PHP_EOL; 
-
+    if(substr($tweetsArray['text'], 0, 2) !== "RT"){
+      echo $tweetsArray['user']['screen_name'];
+      echo ': ';
+      //Displays the text of the tweet, followed by a line break
+      echo $tweetsArray['text'] . "<br>" . PHP_EOL; 
+    }
   //Connect to MongoDB client
   $m =  new MongoDB\Client;
 
