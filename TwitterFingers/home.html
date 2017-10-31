@@ -1,0 +1,118 @@
+<!DOCTYPE>
+<html lang="en">
+
+
+<head>
+<title> WEBSITE IN NOTEPAD </title>
+
+<link rel="stylesheet" type="text/css" href="css/legend.css"/>
+<link rel="icon" href="images/favicon.ico" type="favicon">
+
+
+
+</head>
+
+<body>
+
+<div id="container"> 
+<div>
+ <img src="Images/logo.png ">
+ </div>
+<div id="navigation"> 
+
+
+
+<ul id="navemenu">
+<li> <a href="home.html"> home </a> </li>
+<li> <a href="#"> Scientists </a> </li>
+<li> <a href="#"> Philosophers </a> </li>
+<li> <a href="#"> Leaders </a> </li>
+<li> <a href="#"> Contact </a> </li>
+</ul>
+
+</div>
+
+<div id="banner"> </div>
+
+<div id="content_area">
+<h2><center> By:William Brown III, KENDALL Lane, Emmett Elliott, Telisha Everett, and Khadijah Muhammad </center></h2>
+
+	
+
+	<style>
+
+	h1, h2{
+			font-family:cursive;
+		  }
+
+	</style>
+	<h1><center>Stream</center></h1>
+	<form action="tmhOAuth/StreamAccess.php" method="post" target="_blank" id="stream">
+	</form>
+
+	<button type="submit" form="stream" value="stream">Start Stream</button>
+
+
+	<br>
+
+	<h1><center>Search Tweets</center></h1>
+
+	<div id="searchbox">
+
+		<?php require __DIR__. '../../../vendor/autoload.php';?>
+
+		<!--Search Box for User-->
+		<form action="mongoSearchText.php" method="get" target="_blank" id="textForm">
+		<button type="submit" form="textForm" value="Submit">Search Text</button>
+		<input type="text" name="tweetText"><br><br>
+		</form>
+
+		<!--Search Box for User-->
+		<form action="mongoSearchUsers.php" method="get" target="_blank" id="userForm">
+		<button type="submit" form="userForm" value="Submit">Search Users</button>
+		<input type="text" name="users"><br><br>
+		</form>
+
+		<form action="mongoSearch.php" method="get" target="_blank" id="all">
+		<button type="submit" form="all" value="Submit">Search All</button>
+		<input type="text" name="wholeTweet"><br><br>
+		</form>
+
+	</div>
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
