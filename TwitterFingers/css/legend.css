@@ -14,7 +14,7 @@ background-color:#000;
 height:60px;
 border:3px solid #FFFF00;
 margin-top:5px;
-background-image: url('../img/background_pict.png');
+background-image: url('new logo.jpg'); /*Telisha put in the new logo HAVE NOT SAVED CODE YET*/
 }
 ul#navemenu{
 list-style-type:none;
@@ -37,7 +37,7 @@ border-radius: 5px;
 }
 #banner{
 height: 295px;
-background-image: url('../img/stock-market.jpg');
+background-image: url(); /*Telisha took out the image HAVE NOT SAVED CODE YET*/
 background-size: cover;
 } 
 #content_area{
