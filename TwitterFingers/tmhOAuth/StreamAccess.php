@@ -1,9 +1,9 @@
 
 <html>
-<body style ="background-color: #38eeff;">
+<body style ="background-color: #FFFFFF;">
 <body>
 
-<title>Twitter Fingerz Stream</title>
+<title>FinanceItAll Stream</title>
 
 <h1>Stream Window</h1>
 <div id="startStream" style="height:300px;width:1220px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
@@ -176,6 +176,16 @@ $code = $tmhOAuth->streaming_request(
 );
 $tmhOAuth->render_response();
 ?>
+
+<!--Telisha Everett's Code -->
+function stop() {
+    sourceElement.setAttribute("empty", "");
+    mongoSearch.stop();
+    //stop mongo
+    mongoSearch(function () { 
+        loadTweets.stop(); // This stops the stream from downloading
+    });
+
 
 </div>
 

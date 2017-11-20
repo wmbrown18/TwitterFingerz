@@ -1,32 +1,25 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <head>
 <!-- Title -->
 <title>TwitterFingerz</title>
 
-<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/magic.css"/>
 
 
 <body>
-	<div id="container"> 
-	<center><img src="img/logo.png" alt="Twitter Fingerz" style="width:360px;height:343px;"></center>
-	<div id="navigation"> 
+	<div id="nav1">
+     <h1><a href="index.html"> Finance It All</a></h1>
+     <ul>
+        <li><a href="index.html">Home</a></li>
+        <li id="active"><a href="TwitterFingerz.php">Start Stream</a></li>
+        <li><a href="statistics.html">Statistical Analysis</a></li>
+    </ul> 
 
-		<ul id="navemenu">
-		<li> <a href="TwitterFingerz.php"> Home </a> </li>
-		<li> <a href="#"> Scientists </a> </li>
-		<li> <a href="#"> Philosophers </a> </li>
-		<li> <a href="#"> Leaders </a> </li>
-		<li> <a href="#"> Contact </a> </li>
-		</ul>
-
-	</div>
 </div>
-<!-- logo edit here -->
+<div id="main-content">
 
-<div id="banner"></div>
+</div>
 
-
-<h2><center>By William Brown III, KENDALL Lane, Emmett Elliott, Telisha Everett, and Khadijah Muhammad </center></h2>
 </head>
 
 
@@ -68,8 +61,9 @@ h1, h2{
   style="border:none;"></iframe>
 
 <!-- stops here -->
-
-<form action="tmhOAuth/StreamAccess.php" method="post" target="iframe_1" id="stream">
+<form action="loadTweets.php" method="post" target="iframe_1" id="stream" style ="float:right;">
+</form>
+<form action="tmhOAuth/StreamAccess.php" method="post" target="iframe_1" id="stream" style ="float:left;">
 </form>
 
 <button type="submit" form="stream" value="stream">Start Stream</button>
@@ -108,6 +102,9 @@ h1, h2{
 	<input type="submit" value="Search All">
 	<input type="text" name="all"><br><br>
 	</form> -->
+
+    
+</form>
 
 </div>
 </div>
