@@ -12,7 +12,7 @@
      <ul>
         <li><a href="index.html">Home</a></li>
         <li id="active"><a href="TwitterFingerz.php">Start Stream</a></li>
-        <li><a href="statistics.html">Statistical Analysis</a></li>
+        <li><a href="StatisticalAnalysis.php">Statistical Analysis</a></li>
     </ul> 
 
 </div>
@@ -33,6 +33,7 @@
 	   //select a database
 	  // $db = $m->test;
 	   //echo "Database test selected" . "<br>" . PHP_EOL;
+
 	?>
 
 
