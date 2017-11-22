@@ -1,6 +1,6 @@
 <html>
 
-<body style ="background-color: #FFFFFF;"> /*Telisha changed the color to black HAVEN'T SAVED YET 
+<body style ="background-color: #CAE1F9;"> <!--Telisha changed the color to black HAVEN'T SAVED YET -->
 
 <body>
 
@@ -27,9 +27,12 @@ require __DIR__. '../../../vendor/autoload.php';
 
 	   //$file = fopen("tweets.csv", "w");
 	   if(strpos($doc["text"] . $doc["Screen Name"], $_GET["wholeTweet"]) != false){
+
+	   		if(substr($doc['text'], 0, 2) !== "RT"){
 		   echo '"'.$doc["Screen Name"].'","'.$doc["text"] ."<br>" . PHP_EOL ."<br>" . PHP_EOL;
 		   $termFound = true;
 		   $count = $count + 1;
+		}
 		}
 
 		//	fputcsv($file,explode(',', $str));

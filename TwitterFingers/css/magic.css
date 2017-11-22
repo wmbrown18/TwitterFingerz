@@ -18,6 +18,11 @@ button{
 	radius: 10px; border: 1px solid #999; font-size: 75%;
 }
 
+#chartdiv {
+  width: 100%;
+  height: 100%;
+}
+
 #nav1{
  width: 100%;
  height: 70px;
@@ -67,11 +72,12 @@ button{
 
 #main-content{
 	width:100%;
-	height: 660px;
+	height: 400px;
 	background: url('../img/finances.jpg') no-repeat;
 	background-size: cover;
 	text-align: center;
 }
+
 
 input[type=text]
 {
