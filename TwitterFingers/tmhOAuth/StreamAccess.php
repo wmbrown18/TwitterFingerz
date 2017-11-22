@@ -6,7 +6,7 @@
 <title>FinanceItAll Stream</title>
 
 <h1>Stream Window</h1>
-<div id="startStream" style="height:300px;width:1220px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+<div id="startStream" style="height:300px;width:100%;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;background-color:powderblue">
 
 	
 	
@@ -106,12 +106,14 @@ echo "</ul>";*/
 		//if( $tweetsArray['user']['id'] == $follows)
 		//{
 			//Displays the screen name of the user who tweeted
-    if(substr($tweetsArray['text'], 0, 2) !== "RT"){
-      echo $tweetsArray['user']['screen_name'];
-      echo ': ';
-      //Displays the text of the tweet, followed by a line break
-      echo $tweetsArray['text'] . "<br>" . PHP_EOL; 
-    }
+
+  //OLD WAY TO POPULATE TWEETS!!! REALLY SLOW!
+    // if(substr($tweetsArray['text'], 0, 2) !== "RT"){
+    //   echo $tweetsArray['user']['screen_name'];
+    //   echo ': ';
+    //   //Displays the text of the tweet, followed by a line break
+    //   echo $tweetsArray['text'] . "<br>" . PHP_EOL; 
+    // }
   //Connect to MongoDB client
   $m =  new MongoDB\Client;
 
@@ -124,6 +126,21 @@ echo "</ul>";*/
 		//Insert tweet into database
 		$doc = $collection->insertOne (["Screen Name" => $tweetsArray['user']['screen_name'], "text" => $tweetsArray['text']]);
 	//	}
+
+    $cursor = $collection->find();
+    $count = 0;
+    foreach($cursor as $doc)
+    {
+      if(substr($doc['text'], 0, 2) !== "RT" && $count > 250){
+       echo $doc['Screen Name'];
+       echo ': ';
+       //Displays the text of the tweet, followed by a line break
+       echo $doc['text'] . "<br>" . PHP_EOL; 
+
+     }
+     else
+      $count = $count + 1;
+    }
 //}
 //---------------------------------------------//
 
@@ -177,14 +194,14 @@ $code = $tmhOAuth->streaming_request(
 $tmhOAuth->render_response();
 ?>
 
-<!--Telisha Everett's Code -->
+<!--Telisha Everett's Code 
 function stop() {
     sourceElement.setAttribute("empty", "");
     mongoSearch.stop();
     //stop mongo
     mongoSearch(function () { 
         loadTweets.stop(); // This stops the stream from downloading
-    });
+    });-->
 
 
 </div>

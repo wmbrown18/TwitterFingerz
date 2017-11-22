@@ -1,6 +1,6 @@
 
 <html>
-<body style ="background-color: #38eeff;">
+<body style ="background-color: #CAE1F9;">
 
 <body>
 
@@ -25,9 +25,11 @@ require __DIR__. '../../../vendor/autoload.php';
 
 	   //$file = fopen("tweets.csv", "w");
 	   if($doc["Screen Name"] == $_GET["users"]){
+		if(substr($doc['text'], 0, 2) !== "RT"){
 		   echo '"'.$doc["Screen Name"].'","'.$doc["text"] ."<br>" . PHP_EOL ."<br>" . PHP_EOL;
 		   $termFound = true;
 		   $count = $count + 1;
+		}
 		}
 
 		//	fputcsv($file,explode(',', $str));
