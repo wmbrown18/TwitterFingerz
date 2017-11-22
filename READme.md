@@ -4,6 +4,15 @@
 -MongoDB PHP Driver
 -Composer
 
+====================================================================ATTENTION==================================================================================
+If you have the above software requirements met there is a startApplication.bat to begin the application. If for any reason it doesn't work follow these steps
+1. Open Xampp and start the Apache server
+2. Open a command line prompt and type "mongod". Keep this prompt open at all times while running this application.
+3. Open a browser, like Chrome, and go to localhost/TwitterFingerz/TwitterFingers/main.html
+===============================================================================================================================================================
+
+Xampp Installation
+1. Download and Install Xampp for Windows and choose the one with PHP version 7.1
 
 MongoDB Installation
 Follow these instructions to successfully setup MongoDB and the MongoDB-PHP Driver
@@ -12,10 +21,12 @@ Follow these instructions to successfully setup MongoDB and the MongoDB-PHP Driv
 	Once installed create a new folder in the C:\ drive and name it "data". Within the "data" folder create another folder named "db".
 2. Download the latest MongoDB-PHP driver. This PHP Driver must match the PHP version of your Xampp install. It is also dependent on the version of MongoDB 
 	that is installed on your machine. For a full compatibility list visit: https://docs.mongodb.com/ecosystem/drivers/php/#compatibility
-	Since we are using MongoDB version 3.4 and PHP version 7.1 our MongoDB-PHP driver should be a minimum of version 1.2. 
-	We will be using version 1.2.8 found here: http://pecl.php.net/package/mongodb
+	Since we are using MongoDB version 3.4 and PHP version 7.1 our MongoDB-PHP driver should be a minimum of version 1.2 
+	We will be using version 1.3.1 found here: http://pecl.php.net/package/mongodb
 3. Click on the MongoDB-PHP driver that is compatible and navigate to 'DLL' list. There are 4 downloads for each version of PHP, categorized by your operating system's
-	architecture and whether or not your version of PHP utilizes thread safety. To find this information go to your web browser and in the address bar type: 'localhost/phpinfo.php'.
+	architecture and whether or not your version of PHP utilizes thread safety. To find this information:
+	3a. Open Xampp and start the Apache server.
+	3b. Go to your web browser and in the address bar type: 'localhost/dashboard/phpinfo.php'.
 	'Ctrl-F' searching for "Thread Safety" to determine whether it is enabled or disabled. If it is enabled choose a MongoDB-PHP driver link that contains "(TS)" and if your
 	installation of Windows is 32-bit make sure that it also contains "x86".
 4. The downloaded zip file will contain a dll file "php_mongodb.dll" which should be placed within your Xampp install folder. 
@@ -49,22 +60,19 @@ Follow these instructions to install Composer. Composer adds most of the remaini
 2. Once installed open the Windows command line.
 3. Navigate to the working directory for Xampp using cd.
 	Ex. cd xampp\htdocs
-4. Type "composer require "mongodb/mongodb=^1.0.0 --ignore-platform-reqs"
+4. Type "composer require mongodb/mongodb=^1.0.0 --ignore-platform-reqs"
 	Composer and all the necessary PHP libraries required for this application should now be installed in this folder.
 
 
 Web Application Installation
-Follow these instructions to successfully run the Twitter-Fingerz site via your local host.
+Follow these instructions to successfully run the Finance It All site via your localhost.
 
-1. Unzip the src_tf folder.
-2. Copy the src_tf (unzipped) folder to your XAMPP htdocs folder. 
-	Ex. "C:\xampp\htdocs"
-3. Double-click the src_tf folder in your htdocs folder.
-4. Double-click the 'TwitterFingers'.
-5. Ensure the 'TwitterFingerz.php' file is inside the folder along with: 'streaming_api2.php', 'table_design.css', and a 'twitteroauth' folder.
+1. Open your bash to run Git from your command line and cd to your XAMPP htdocs folder. 
+	Ex. cd xampp/htdocs
+2. Git clone the repository www.github.com/wmbrown18/TwitterFingerz.git
 3. Open the XAMPP control panel and ensure the Apache server is running. 
 4. In your web browser's address bar, enter "localhost/" plus 
-	the path to your 'TwitterFingerz.php' file: 'localhost/src_tf/TwitterFingers/TwitterFingerz.php'.
+	the path to your 'TwitterFingerz.php' file: 'localhost/TwitterFingerz/TwitterFingers/main.html'.
 5. The website should open to a heading with all of the team members names, and begin the stream of tweets
 
 
@@ -74,15 +82,12 @@ Software Description
 -Right now the stream returns 
 
 	Tweets created by the user
-	Tweets which are retweeted by the user 
-	Replies to any Tweet created by the user 
-	Retweets of any Tweet created by the user 
+	Replies to any Tweet created by the user  
 	Manual replies, created without pressing a reply button (e.g. “@twitterapi I agree”).
 
 ****NOTES****
 Note: When you want to add another you must first get the userID from gettwitterid.com. Then add to the "$Usertofollow" variable in StreamAccess.php file
-Note: We realize that this project only needs to get original tweets from users, and not mentions and retweets by other people. Our stream will only display 
-	 orignial tweets in future iterations. We included this example of the stream to show that we have made progress in being able to connect to the 
+Note: We realize that this project only needs to get original tweets from users, and not mentions. We included this example of the stream to show that we have made progress in being able to connect to the 
 	 Twitter Streaming API and gather data.
 
 
