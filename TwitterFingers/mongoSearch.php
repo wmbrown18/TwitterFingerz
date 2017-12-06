@@ -8,7 +8,7 @@
 
 <?php 
 echo "<h1>Search Results for: " . $_GET["wholeTweet"] . "</h1><br>";
-
+global $termFound;
 require __DIR__. '../../../vendor/autoload.php';
 //Connect to MongoDB client
   $m =  new MongoDB\Client;
@@ -26,10 +26,16 @@ require __DIR__. '../../../vendor/autoload.php';
 
 
 	   //$file = fopen("tweets.csv", "w");
-	   if(strpos($doc["text"] . $doc["Screen Name"], $_GET["wholeTweet"]) != false){
+	   //if(strpos($doc["text"] . $doc["Screen Name"], $_GET["wholeTweet"]) != false)
+	   	if(preg_match('/\b'.$_GET["wholeTweet"].'\b/i', $doc["text"] . $doc["Screen Name"]))
+	   	{
 
 	   		if(substr($doc['text'], 0, 2) !== "RT"){
-		   echo '"'.$doc["Screen Name"].'","'.$doc["text"] ."<br>" . PHP_EOL ."<br>" . PHP_EOL;
+			   echo $doc['symbol'] . ': ';
+		       
+		       echo $doc['Screen Name'] .  ': ';
+		       //Displays the text of the tweet, followed by a line break
+		       echo $doc['text'] . "<br>" . PHP_EOL; 
 		   $termFound = true;
 		   $count = $count + 1;
 		}
@@ -43,7 +49,7 @@ require __DIR__. '../../../vendor/autoload.php';
 
 
 	if($termFound != TRUE)
-		echo 'search term not found'."<br>";
+		echo 'The term "' . $_GET["wholeTweet"] . '" was not found'."<br>";
 
 ?>
 </body>

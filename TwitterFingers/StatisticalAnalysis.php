@@ -43,7 +43,7 @@
 		// foreach($result as $var)
 		// 	echo $var['start_date'] . '<br>';
 		
-		/*=====================WORKING CODE============================
+		/*=====================WORKING CODE ============================
 		$api_key = "vrf8_NNFgHthxUPX19MT";
 		$quandl = new Quandl($api_key, "json");
 		$symbol = "WIKI/APPL";
