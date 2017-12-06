@@ -1,4 +1,5 @@
-﻿Software Requirements:
+=======
+Software Requirements:
 -Xampp with PHP 7.1
 -MongoDB
 -MongoDB PHP Driver
@@ -89,7 +90,4 @@ Software Description
 Note: When you want to add another you must first get the userID from gettwitterid.com. Then add to the "$Usertofollow" variable in StreamAccess.php file
 Note: We realize that this project only needs to get original tweets from users, and not mentions. We included this example of the stream to show that we have made progress in being able to connect to the 
 	 Twitter Streaming API and gather data.
-
-
-
 	
