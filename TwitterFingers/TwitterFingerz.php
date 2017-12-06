@@ -13,7 +13,7 @@
         <li><a href="main.html">Home</a></li>
         <li id="active"><a href="TwitterFingerz.php">Stream</a></li>
         <li><a href="StatisticalAnalysis.php">Statistical Analysis</a></li>
-    </ul> 
+    </ul>
 
 </div>
 
@@ -52,17 +52,9 @@ h1, h2{
 </style>
 <br><br>
 <!-- Emmett Elliott code -->
-<iframe id="iframe_a" height="300px" width="100%" src="http://i.picresize.com/images/2017/10/26/lGgpW.jpg" name="iframe_1"
-  style="border:none;"></iframe>
-
-<!-- stops here 
-<form action="loadTweets.php" method="post" target="iframe_1" id="stream" style ="float:right;background-color:powderblue;"">
-</form>-->
-<form action="tmhOAuth/StreamAccess.php" method="post" target="iframe_1" id="stream" style ="float:left;">
-</form>
-
 <button type="submit" form="stream" value="stream">Start Stream</button>
 <button onclick="location.href='TwitterFingerz.php'" type="button">Stop Stream</button>
+
 
 <br>
 
@@ -71,23 +63,30 @@ h1, h2{
 <div id="searchbox">
 
 	<!--Search Box for User-->
+	<!--
 	<form action="mongoSearchText.php" method="get" target="iframe_1" id="textForm">
 	<button type="submit" form="textForm" value="Submit">Search Text</button>
 	<input type="text" name="tweetText"><br><br>
 	</form>
+	-->
 
 	<!--Search Box for User-->
+	<!--
 	<form action="mongoSearchUsers.php" method="get" target="iframe_1" id="userForm">
 	<button type="submit" form="userForm" value="Submit">Search Users</button>
 	<input type="text" name="users"><br><br>
-	</form>
+	</form> -->
+
 
 
 	<form action="mongoSearch.php" method="get" target="iframe_1" id="all">
 	<button type="submit" form="all" value="Submit">Search All</button>
 	<input type="text" name="wholeTweet"><br><br>
 	</form>
-	<!--
+
+
+
+  <!--
 
 	<form action="mongoSearchUsers.php" method="get" target="_blank">
 	<input type="submit" value="Search Users">
@@ -98,14 +97,22 @@ h1, h2{
 	<input type="text" name="all"><br><br>
 	</form> -->
 
-    
+
+
+</div>
+</div>
+
+
+<iframe id="iframe_a" height="800px" width="100%"  name="iframe_1"
+  style="border:none;"></iframe>
+
+<!-- stops here
+<form action="loadTweets.php" method="post" target="iframe_1" id="stream" style ="float:right;background-color:powderblue;"">
+</form>-->
+<form action="tmhOAuth/StreamAccess.php" method="post" target="iframe_1" id="stream" style ="float:left;">
 </form>
 
-</div>
-</div>
-<div id="main-content">
 
-</div>
 </body>
 
 </html>

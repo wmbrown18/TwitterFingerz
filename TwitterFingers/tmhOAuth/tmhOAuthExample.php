@@ -41,7 +41,7 @@ class tmhOAuthExample extends tmhOAuth {
     $this->config = array_merge(
       array(
         // change the values below to ones for your application
-        'consumer_key'    => '2iwAwSG6tzD12EtWSI7QUc8H2',
+        'consumer_key'    => '6je5nYuL8cVF94JitwF2UmAB8',
         'consumer_secret' => 'Y6KeSGp2LzEeM8FecE4YcKnpoI2ie1n2v8mftH46uz4h4c7ig4',
         'token'           => '828704970593673217-fpjQo9kpuJ7dLSMtmmbPnPxRmo1OCEo',
         'secret'          => 'SHHc9AvOBWVPGJdzyZQ5G5zOcHa6YR7wKoqyE2Lqjby5x',
