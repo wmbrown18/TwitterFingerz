@@ -1,13 +1,14 @@
 
 <html>
-<body style ="background-color: #FFFFFF;">
+<body style ="background-color: #FFFFFF; font-size: 25px;">
 <body>
 
 <title>FinanceItAll Stream</title>
 
-<h1>Stream Window</h1>
-<div id="startStream" style="height:800px;width:100%;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;background-color:#CAE1F9">
 
+<!--
+<div id="startStream" style="height:800px;width:100%;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;background-color:#CAE1F9">
+-->
 	
 	
 
@@ -170,13 +171,14 @@ echo "</ul>";*/
     foreach($cursor as $doc)
     {
       if(substr($doc['text'], 0, 2) !== "RT"){
-       
+       echo '<div style ="border: 5px solid #aaa;">';
        echo $doc['symbol'] . ': ';
        
        echo $doc['Screen Name'] .  ': ';
        //Displays the text of the tweet, followed by a line break
-       echo $doc['text'] . "<br>" . PHP_EOL; 
-
+       
+       echo  $doc['text'] . "<br>" . PHP_EOL; 
+        echo '</div>';
 
      }
      else

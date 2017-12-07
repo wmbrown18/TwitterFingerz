@@ -16,6 +16,61 @@
     </ul>
 
 </div>
+<div id="main-content">
+	<h1 style ="color:white;">Search Tweets</h1>
+
+<div id="searchbox">
+
+	<!--Search Box for User-->
+	<!--
+	<form action="mongoSearchText.php" method="get" target="iframe_1" id="textForm">
+	<button type="submit" form="textForm" value="Submit">Search Text</button>
+	<input type="text" name="tweetText"><br><br>
+	</form>
+	-->
+
+	<!--Search Box for User-->
+	<!--
+	<form action="mongoSearchUsers.php" method="get" target="iframe_1" id="userForm">
+	<button type="submit" form="userForm" value="Submit">Search Users</button>
+	<input type="text" name="users"><br><br>
+	</form> -->
+
+
+
+	<form action="mongoSearch.php" method="get" target="iframe_1" id="all">
+	<button type="submit" form="all" value="Submit">Search All</button>
+	<input type="text" onfocus ="this.value=''" name="wholeTweet"><button class="close-icon" type="reset"></button><br><br>
+	</form>
+
+
+
+  <!--
+
+	<form action="mongoSearchUsers.php" method="get" target="_blank">
+	<input type="submit" value="Search Users">
+	<input type="text" name="users"><br><br>
+
+	<form action="mongoSearch.php" method="get" target="_blank">
+	<input type="submit" value="Search All">
+	<input type="text" name="all"><br><br>
+	</form> -->
+
+
+
+</div>
+<br><br>
+<!-- Emmett Elliott code -->
+<button type="submit" form="stream" value="stream">Start Stream</button>
+<button onclick="location.href='TwitterFingerz.php'" type="button">Stop Stream</button>
+
+
+<br>
+
+</div>
+<div id="footer">
+    <h2>By:William Brown III, Kendall Lane, Telisha Everett, Emmett Elliot, Khadijah Muhammad</h2>
+</div>
 
 
 </head>
@@ -45,23 +100,27 @@
 <style>
 
 h1, h2{
-	font-family:cursive;
+	'Raleway', sans-serif
 }
 
 
 </style>
 <br><br>
+
 <!-- Emmett Elliott code -->
+<!--
 <button type="submit" form="stream" value="stream">Start Stream</button>
 <button onclick="location.href='TwitterFingerz.php'" type="button">Stop Stream</button>
 
 
 <br>
-
+-->
+<!--
 <h1>Search Tweets</h1>
 
-<div id="searchbox">
 
+<div id="searchbox">
+-->
 	<!--Search Box for User-->
 	<!--
 	<form action="mongoSearchText.php" method="get" target="iframe_1" id="textForm">
@@ -77,7 +136,7 @@ h1, h2{
 	<input type="text" name="users"><br><br>
 	</form> -->
 
-
+<!--
 
 	<form action="mongoSearch.php" method="get" target="iframe_1" id="all">
 	<button type="submit" form="all" value="Submit">Search All</button>
@@ -85,7 +144,7 @@ h1, h2{
 	</form>
 
 
-
+-->
   <!--
 
 	<form action="mongoSearchUsers.php" method="get" target="_blank">
@@ -109,6 +168,7 @@ h1, h2{
 <!-- stops here
 <form action="loadTweets.php" method="post" target="iframe_1" id="stream" style ="float:right;background-color:powderblue;"">
 </form>-->
+
 <form action="tmhOAuth/StreamAccess.php" method="post" target="iframe_1" id="stream" style ="float:left;">
 </form>
 
