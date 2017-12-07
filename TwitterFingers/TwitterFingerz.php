@@ -17,6 +17,11 @@
 
 </div>
 <div id="main-content">
+	<br><br><br><br>
+	<!-- Emmett Elliott code -->
+<button type="submit" form="stream" value="stream">Start Stream</button>
+<button onclick="location.href='TwitterFingerz.php'" type="button">Stop Stream</button>
+<br><br><br>
 	<h1 style ="color:white;">Search Tweets</h1>
 
 <div id="searchbox">
@@ -60,16 +65,14 @@
 
 </div>
 <br><br>
-<!-- Emmett Elliott code -->
-<button type="submit" form="stream" value="stream">Start Stream</button>
-<button onclick="location.href='TwitterFingerz.php'" type="button">Stop Stream</button>
+
 
 
 <br>
 
 </div>
 <div id="footer">
-    <h2>By:William Brown III, Kendall Lane, Telisha Everett, Emmett Elliot, Khadijah Muhammad</h2>
+    <h2>By: William Brown III, Kendall Lane, Telisha Everett, Emmett Elliot, Khadijah Muhammad</h2>
 </div>
 
 

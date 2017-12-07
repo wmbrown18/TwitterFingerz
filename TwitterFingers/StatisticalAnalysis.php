@@ -20,9 +20,9 @@
     </ul> 
 
 </div>
-<form action="" method="get" id="all">
-  <button type="submit" form="all" value="Submit">Go</button>
-  <input type="text" name="stockSymbol"><br><br>
+  <form action="" method="get" id="all">
+    <button type="submit" form="all" value="Submit">Go</button>
+    <input type="text" name="stockSymbol"><br><br>
   </form>
 	<?php require __DIR__. '../../../vendor/dannyben/php-quandl/Quandl.php';
 		// //  Initiate curl
