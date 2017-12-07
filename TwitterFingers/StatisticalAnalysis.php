@@ -20,6 +20,10 @@
     </ul> 
 
 </div>
+<form action="" method="get" id="all">
+  <button type="submit" form="all" value="Submit">Go</button>
+  <input type="text" name="stockSymbol"><br><br>
+  </form>
 	<?php require __DIR__. '../../../vendor/dannyben/php-quandl/Quandl.php';
 		// //  Initiate curl
 		// $ch = curl_init();
@@ -43,20 +47,42 @@
 		// foreach($result as $var)
 		// 	echo $var['start_date'] . '<br>';
 		
-		/*=====================WORKING CODE ============================
+		//=====================WORKING CODE ============================
 		$api_key = "vrf8_NNFgHthxUPX19MT";
-		$quandl = new Quandl($api_key, "json");
+		$quandl = new Quandl($api_key, "csv");
+    
 		$symbol = "WIKI/APPL";
-		$data = $quandl->getSymbol("WIKI/AAPL", [
+		$data = $quandl->getSymbol("WIKI/".$_GET["stockSymbol"], [
 			"sort_order"      => "desc",
 			"rows"            => 10,
-			"column_index"    => 4, 
 			"trim_start" => "today-30 days",
 			"trim_end"   => "today",
 		]);
-		$results = json_decode($data, true);
-		print_r($results);
-		===============================================================*/
+		//$results = json_decode($data, true);
+		//echo $data."<br><br><br>";
+
+    $lines = explode("\n", $data);
+    
+    echo "<table>";
+    foreach($lines as $line)
+    {
+      $lineData = explode(",", $line);
+      $count = 1;
+      echo "<tr>";
+
+      foreach($lineData as $value)
+      {
+        if($count < 6)
+          echo "<td>". $value. (chr(9))."</td>";
+        
+        $count++;
+      }
+
+      echo "</tr>";
+    }
+    echo "</table>";
+
+		//===============================================================
 	?>
 
    <center>
