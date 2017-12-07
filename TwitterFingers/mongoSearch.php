@@ -1,6 +1,6 @@
 <html>
 
-<body style ="background-color: #CAE1F9;"> <!--Telisha changed the color to black HAVEN'T SAVED YET -->
+<body style ="font-size: 25px; > <!--Telisha changed the color to black HAVEN'T SAVED YET -->
 
 <body>
 
@@ -29,13 +29,15 @@ require __DIR__. '../../../vendor/autoload.php';
 	   //if(strpos($doc["text"] . $doc["Screen Name"], $_GET["wholeTweet"]) != false)
 	   	if(preg_match('/\b'.$_GET["wholeTweet"].'\b/i', $doc["text"] . $doc["Screen Name"]))
 	   	{
-
+			
 	   		if(substr($doc['text'], 0, 2) !== "RT"){
+	   			echo '<div style ="border: 5px solid #aaa;">';
 			   echo $doc['symbol'] . ': ';
 		       
 		       echo $doc['Screen Name'] .  ': ';
 		       //Displays the text of the tweet, followed by a line break
 		       echo $doc['text'] . "<br>" . PHP_EOL; 
+		       echo '</div>';
 		   $termFound = true;
 		   $count = $count + 1;
 		}
