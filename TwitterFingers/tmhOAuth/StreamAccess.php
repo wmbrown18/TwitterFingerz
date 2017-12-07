@@ -105,8 +105,8 @@ $tweetsArray = json_decode($tweet, true);
       if(strpos($tweetsArray['text'], '@washingtonpost') !== false)
         $symbol = 'NYSE:GHC';
 
-       if(stripos($tweetsArray['text'], 'Apple') !== false)
-         $symbol = 'APPL';
+       else if(stripos($tweetsArray['text'], 'Apple') !== false)
+         $symbol = 'AAPL';
        else if(stripos($tweetsArray['text'], 'Google') !== false)
          $symbol = 'GOOGL';
        else if(stripos($tweetsArray['text'], 'Nvidia') !== false || stripos($tweetsArray['text'], 'NVIDIA') !== false)
@@ -162,27 +162,48 @@ echo "</ul>";*/
 	   //Select collection
 	   $collection = $db->selectCollection('tweetfeed');
 		
+    // $count = 0;
+    // if($count == 0)
+    // {
+    //   $collection -> remove(array("title"=>"MongoDB Tutorial"),false);
+    //   $count = 1;
+    // }
+
 		//Insert tweet into database
 		$doc = $collection->insertOne (["Screen Name" => $tweetsArray['user']['screen_name'], "text" => $tweetsArray['text'], "symbol" => $symbol]);
 	//	}
 
     $cursor = $collection->find();
-    $count = 0;
+    
     foreach($cursor as $doc)
     {
       if(substr($doc['text'], 0, 2) !== "RT"){
-       echo '<div style ="border: 5px solid #aaa;">';
+
+       echo '<div style ="border: 5px solid #aaa;" id="tweet">';
        echo $doc['symbol'] . ': ';
        
        echo $doc['Screen Name'] .  ': ';
        //Displays the text of the tweet, followed by a line break
        
        echo  $doc['text'] . "<br>" . PHP_EOL; 
-        echo '</div>';
+       echo '</div>';
+       ?>
 
+       <script>
+        function pushFirstTweet()
+        {
+          
+            var list = document.getElementById("stream");
+            list.insertBefore(document.getElementById("tweet"), list.childNodes[0]);
+            document.getElementById("tweet").removeAttribute("div");
+          
+        }
+        pushFirstTweet();
+
+      </script>
+      <?php
      }
-     else
-      $count = $count + 1;
+    
     }
 //}
 //---------------------------------------------//
