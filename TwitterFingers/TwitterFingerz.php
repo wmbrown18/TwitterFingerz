@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿OCTYPE html>
 <head>
 <!-- Title -->
 <title>TwitterFingerz</title>
@@ -22,6 +22,15 @@
 <button type="submit" form="stream" value="stream">Start Stream</button>
 <button onclick="location.href='TwitterFingerz.php'" type="button">Stop Stream</button>
 <br><br><br>
+
+	<h1 style ="color:white;">Find User</h1>
+	<form action="" method="get" id="all">
+	    <button type="submit" form="all" value="Submit">Search</button>
+	    <input type="text" name="newAccount"><br><br>
+  	</form>
+  	<br>
+
+  	
 	<h1 style ="color:white;">Search Tweets</h1>
 
 <div id="searchbox">
@@ -40,7 +49,7 @@
 	<button type="submit" form="userForm" value="Submit">Search Users</button>
 	<input type="text" name="users"><br><br>
 	</form> -->
-
+	
 
 
 	<form action="mongoSearch.php" method="get" target="iframe_1" id="all">
