@@ -20,9 +20,9 @@
     </ul> 
 
 </div>
-  <form action="" method="get" id="all">
-    <button type="submit" form="all" value="Submit">Go</button>
-    <input type="text" name="stockSymbol"><br><br>
+  <form action="StatisticalAnalysis.php" method="get" id="all">
+    <input type="text" name="stockSymbol">
+    <button type="submit" form="all" value="Submit">Go</button><br><br>
   </form>
 	<?php require __DIR__. '../../../vendor/dannyben/php-quandl/Quandl.php';
 		// //  Initiate curl
@@ -48,13 +48,17 @@
 		// 	echo $var['start_date'] . '<br>';
 		
 		//=====================WORKING CODE ============================
+  if(isset($_GET["stockSymbol"]))
+    if($_GET["stockSymbol"] == null)
+      $symbol = "WIKI/".$_GET["stockSymbol"];
+
 		$api_key = "vrf8_NNFgHthxUPX19MT";
 		$quandl = new Quandl($api_key, "csv");
     
-		$symbol = "WIKI/APPL";
-		$data = $quandl->getSymbol("WIKI/".$_GET["stockSymbol"], [
+		
+		$data = $quandl->getSymbol($symbol, [
 			"sort_order"      => "desc",
-			"rows"            => 10,
+			"rows"            => 7,
 			"trim_start" => "today-30 days",
 			"trim_end"   => "today",
 		]);
