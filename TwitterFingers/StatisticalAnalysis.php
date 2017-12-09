@@ -2,6 +2,31 @@
 <html>
 <meta charset="utf-8">
 <head>
+  <style>
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #ddf7d4;}
+#customers tr:nth-child(odd){background-color: #f7d7d7;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
 	<script src="amcharts/amcharts.js"></script>
 	<script src="amcharts/amstock.js"></script>
 	<script src="amcharts/serial.js"></script>
@@ -20,54 +45,82 @@
     </ul> 
 
 </div>
-  <form action="StatisticalAnalysis.php" method="get" id="all">
-    <input type="text" name="stockSymbol">
-    <button type="submit" form="all" value="Submit">Go</button><br><br>
-  </form>
-	<?php require __DIR__. '../../../vendor/dannyben/php-quandl/Quandl.php';
-		// //  Initiate curl
-		// $ch = curl_init();
-		// // Disable SSL verification
-		// curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		// // Will return the response, if false it print the response
-		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		// // Set the url
-		// $cURL = "https://www.quandl.com/api/v3/datasets/WIKI/FB.json?column_index=4&start_date=2014-01-01&end_date=2014-12-31&collapse=monthly";
-		// curl_setopt($ch, CURLOPT_URL,$cURL);
-		// // Execute
-		// $result=curl_exec($ch);
-		// // Closing
-		// curl_close($ch);
+<br><br>
+  <h3 style="text-align: center">
+      Please enter a stock quote in the box below <br>
+      
+   </h3>
+  <form style="text-align: center" action="StatisticalAnalysis.php" method="get" name="all">
+    <input type="text" id="input" placeholder="Ex. AAPL" name="stockSymbol">
+    <!-- <select id="frame" name="frame">
+      <option value="1min">1 minute</option>
+      <option value="3min">3 minutes</option>
+      <option value="5min">5 minutes</option>
+      <option value="15min">15 minutes</option>
+      <option value="30min">30 minutes</option>
+      <option value="1hr">1 hour</option>
+      <option value="2hr">2 hours</option>
+      <option value="3hr">3 hours</option>
+      <option value="4hr">4 hours</option>
+      <option value="1day">1 day</option>
+      <option value="1week">1 week</option>
+    </select> -->
+    <button class="button" style="vertical-align:middle"><span>Go</span></button>
 
-		// // Will dump a beauty json :3
-		// $result = json_decode($result, true);
-		
-		// print_r($result); echo "<br><br>";
-		
-		// foreach($result as $var)
-		// 	echo $var['start_date'] . '<br>';
+    <br><br>
+  </form>
+  <script type="text/javascript">
+    document.getElementById('input') = "<?php echo $_GET['stockSymbol'];?>";
+  </script>
+	<?php require __DIR__. '../../../vendor/dannyben/php-quandl/Quandl.php';
+  global $symbol;
+  //global $interval;
+
 		
 		//=====================WORKING CODE ============================
-  if(isset($_GET["stockSymbol"]))
-    if($_GET["stockSymbol"] == null)
-      $symbol = "WIKI/".$_GET["stockSymbol"];
+     if(isset($_GET["stockSymbol"]))
+       $symbol = "WIKI/".$_GET["stockSymbol"];
+    
+    // if(isset($_GET["frame"]))
+    //   $interval = intval(substr($_GET["frame"], 0, 1));
+    // else if(isset($_GET["frame"]))
+    //   $interval = intval(substr($_GET["frame"], 0, 1));
+    // else if(isset($_GET["frame"]))
+    //   $interval = intval(substr($_GET["frame"], 0, 1));
+    // else if(isset($_GET["frame"]) && $_GET["frame"] == "15 minutes")
+    //   $interval = intval(substr($_GET["frame"], 0, 2));
+    // else if(isset($_GET["frame"]))
+    //   $interval = intval(substr($_GET["frame"], 0, 2));
+    // else if(isset($_GET["frame"]))
+    //   $interval = 60 * intval(substr($_GET["frame"], 0, 1));
+    // else if(isset($_GET["frame"]))
+    //   $interval = 60 * intval(substr($_GET["frame"], 0, 1));
+    // else if(isset($_GET["frame"]))
+    //   $interval = 60 * intval(substr($_GET["frame"], 0, 1));
+    // else if(isset($_GET["frame"]))
+    //   $interval = 60 * intval(substr($_GET["frame"], 0, 1));
+    // else if(isset($_GET["frame"]))
+    //   $interval = "D";
+    // else if(isset($_GET["frame"]))
+    //   $interval = "W";
 
+    
 		$api_key = "vrf8_NNFgHthxUPX19MT";
 		$quandl = new Quandl($api_key, "csv");
     
-		
 		$data = $quandl->getSymbol($symbol, [
-			"sort_order"      => "desc",
+			"order"      => "asc",
 			"rows"            => 7,
 			"trim_start" => "today-30 days",
 			"trim_end"   => "today",
 		]);
 		//$results = json_decode($data, true);
 		//echo $data."<br><br><br>";
-
+if($symbol !== null){
     $lines = explode("\n", $data);
     
-    echo "<table>";
+    echo '<table id="customers">';
+    $superCount = 1;
     foreach($lines as $line)
     {
       $lineData = explode(",", $line);
@@ -76,21 +129,50 @@
 
       foreach($lineData as $value)
       {
-        if($count < 6)
+        if($count < 6 && $superCount < 9)
           echo "<td>". $value. (chr(9))."</td>";
         
         $count++;
       }
 
       echo "</tr>";
+      $superCount++;
     }
     echo "</table>";
 
+
+    //'.$interval.'
+    echo '<center>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+    new TradingView.widget({
+      "width": 980,
+      "height": 610,
+      "symbol": "NASDAQ:'. substr($symbol, 5) . '",
+      "interval": "D",
+      "timezone": "Etc/UTC",
+      "theme": "Light",
+      "style": "1",
+      "locale": "en",
+      "toolbar_bg": "#f1f3f6",
+      "enable_publishing": false,
+      "hide_top_toolbar": true,
+      "save_image": false,
+      "allow_symbol_change": false,
+      "hideideas": true
+    });
+    </script>
+   </center>';
+ }
+    else
+      echo '<h3 style="text-align: center">
+      Here will be a graphical repesentation of the data we collect from stock quotes. <br>
+      Here will also show stock quotes prices
+   </h3>';
 		//===============================================================
 	?>
 
-   <center>
-   	<!-- TradingView Widget BEGIN -->
+   <!-- <center>
 		<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 		<script type="text/javascript">
 		new TradingView.widget({
@@ -108,14 +190,7 @@
 		  "hideideas": true
 		});
 		</script>
-	<!-- TradingView Widget END -->
-
-   </center>
-
-   <h3 style="text-align: center">
-   		Here will be a graphical repesentation of the data we collect from stock quotes. <br>
-   		Here will also show stock quotes prices
-   </h3>
+   </center> -->
 
 </body>
 	<script>

@@ -81,10 +81,12 @@ function removeSimilar($results){
   }
   return $return;
 }
+
 global $newAccount;
 
-$newAccount = $_GET['newAccount'];
-if(strcmp($newAccount, "all") == 0)
+if(isset($_GET['newAccount']))
+  $newAccount = $_GET['newAccount'];
+if(strcmp($newAccount, 'all') == 0)
 {
   $newAccount = '2467791, 34713362, 19546277, 898400251123453952, 839488222724046852, 842409795462299648, 1328120858, 14886375,  4568979016, 747173826488840193, 831723043';
 }
@@ -107,12 +109,12 @@ else if(is_numeric($newAccount) == false)
                                -> buildOauth($url, $request)
                                -> performRequest();
   $accountNumber = json_decode($accountNumber, true);
-
+  print_r($accountNumber);
   $newAccount = $accountNumber[0]['id'];
 
 }
 
-$UsersToFollow = array('follow', $newAccount);
+$UsersToFollow = array('follow' => $newAccount);
 
 
 function my_streaming_callback($data, $length, $metrics) {
@@ -127,7 +129,6 @@ global $symbolGame;
 global $symbol;
 
 $users = $UsersToFollow["follow"];
-$symbols = $symbolGame["symbols"];
 
 //Array list of users to check and make sure only original tweets are coming in
 $checkUsers = explode( ', ', $users );
@@ -140,7 +141,7 @@ $tweet = $data .PHP_EOL;
 $tweetsArray = json_decode($tweet, true);
 
       if(strpos($tweetsArray['text'], '@washingtonpost') !== false)
-        $symbol = 'NYSE:GHC';
+        $symbol = 'NYSE: GHC';
 
        else if(stripos($tweetsArray['text'], 'Apple') !== false)
          $symbol = 'AAPL';
