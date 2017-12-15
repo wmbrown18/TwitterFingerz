@@ -45,7 +45,7 @@
     </ul> 
 
 </div>
-<br><br>
+<br>
   <h3 style="text-align: center">
       Please enter a stock quote in the box below <br>
       
@@ -72,10 +72,49 @@
   <script type="text/javascript">
     document.getElementById('input') = "<?php echo $_GET['stockSymbol'];?>";
   </script>
-	<?php require __DIR__. '../../../vendor/dannyben/php-quandl/Quandl.php';
+	<?php 
+  require __DIR__. '../../../vendor/dannyben/php-quandl/Quandl.php';
+  require __DIR__. '../../../vendor/autoload.php';
   global $symbol;
   //global $interval;
+  $m =  new MongoDB\Client;
 
+     //select a database
+     $db = $m->Tweetdemo;
+     
+     //Select collection
+     $collection = $db->tweetfeed;
+
+     $cursor =  $collection->find();
+
+     $Wcount = 0;
+     $Acount = 0;
+     $Gcount = 0;
+     $Ncount = 0;
+     $Mcount = 0;
+     $Bcount = 0;
+     $Fcount = 0;
+     $Zcount = 0;
+     foreach($cursor as $doc)
+     {
+        if(preg_match('/\b'.'NYSE: GHC'.'\b/i', $doc["symbol"]))
+          $Wcount = $Wcount + 1;
+        if(preg_match('/\b'.'AAPL'.'\b/i', $doc["symbol"]) || preg_match('/\b'.'Apple'.'\b/i', $doc["symbol"]))
+          $Acount = $Acount + 1;
+        if(preg_match('/\b'.'GOOGL'.'\b/i', $doc["symbol"]) || preg_match('/\b'.'Google'.'\b/i', $doc["symbol"]))
+          $Gcount = $Gcount + 1;
+        if(preg_match('/\b'.'Nvidia'.'\b/i', $doc["symbol"]) || preg_match('/\b'.'Nvidia'.'\b/i', $doc["symbol"]))
+          $Ncount = $Ncount + 1;
+        if(preg_match('/\b'.'MSFT'.'\b/i', $doc["symbol"]) || preg_match('/\b'.'Microsoft'.'\b/i', $doc["symbol"]))
+          $Mcount = $Mcount + 1;
+        if(preg_match('/\b'.'BAC'.'\b/i', $doc["symbol"]) || preg_match('/\b'.'Bank of America'.'\b/i', $doc["symbol"]))
+          $Bcount = $Bcount + 1;
+        if(preg_match('/\b'.'FB'.'\b/i', $doc["symbol"]) || preg_match('/\b'.'Facebook'.'\b/i', $doc["symbol"]))
+          $Fcount = $Fcount + 1;
+        if(preg_match('/\b'.'Amazon'.'\b/i', $doc["symbol"]) || preg_match('/\b'.'Amazon'.'\b/i', $doc["symbol"]))
+          $Zcount = $Zcount + 1;
+     }
+     
 		
 		//=====================WORKING CODE ============================
      if(isset($_GET["stockSymbol"]))
@@ -168,8 +207,17 @@ if($symbol !== null){
       echo '<h3 style="text-align: center">
       Here will be a graphical repesentation of the data we collect from stock quotes. <br>
       Here will also show stock quotes prices
-   </h3>';
+   </h3><br><br><br>';
 		//===============================================================
+     echo "There number of Graham Holdings symbols are ".$Wcount."<br>";
+     echo "There number of Apple symbols are ".$Acount."<br>";
+     echo "There number of Google symbols are ".$Gcount."<br>";
+     echo "There number of Nvidia symbols are ".$Ncount."<br>";
+     echo "There number of Microsoft symbols are ".$Mcount."<br>";
+     echo "There number of Bank of America symbols are ".$Bcount."<br>";
+     echo "There number of Facebook symbols are ".$Fcount."<br>";
+     echo "There number of Amazon symbols are ".$Zcount."<br>";
+
 	?>
 
    <!-- <center>

@@ -19,7 +19,16 @@ require __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'tmhOAuthExample.ph
 require __DIR__. '../../../../vendor/j7mbo/twitter-api-php/TwitterAPIExchange.php';
 $tmhOAuth = new tmhOAuthExample();
 
+//added error reporting
 
+  function my_error_handler()
+{
+   echo 'Ugh-Oh!';
+}
+
+set_error_handler('my_error_handler');
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 //@washingtonpost
 //@business
@@ -32,7 +41,7 @@ $tmhOAuth = new tmhOAuthExample();
 //@shopseasonal
 //@stockstotrade
 //telyshaaaa
-//$UsersToFollow = array('follow'    => '2467791, 34713362, 19546277, 898400251123453952, 839488222724046852, 842409795462299648, 1328120858, 14886375,  4568979016, 747173826488840193, 831723043, 128395368');
+$UsersToFollow = array('follow'    => '2467791, 34713362, 19546277, 898400251123453952, 839488222724046852, 842409795462299648, 1328120858, 14886375,  4568979016, 747173826488840193, 831723043, 128395368');
 
 
 function autolink($str, $attributes=array()){
@@ -82,39 +91,39 @@ function removeSimilar($results){
   return $return;
 }
 
-global $newAccount;
+// global $newAccount;
 
-if(isset($_GET['newAccount']))
-  $newAccount = $_GET['newAccount'];
-if(strcmp($newAccount, 'all') == 0)
-{
-  $newAccount = '2467791, 34713362, 19546277, 898400251123453952, 839488222724046852, 842409795462299648, 1328120858, 14886375,  4568979016, 747173826488840193, 831723043';
-}
+// if(isset($_GET['newAccount']))
+//   $newAccount = $_GET['newAccount'];
+// if(strcmp($newAccount, 'all') == 0)
+// {
+//   $newAccount = '2467791, 34713362, 19546277, 898400251123453952, 839488222724046852, 842409795462299648, 1328120858, 14886375,  4568979016, 747173826488840193, 831723043';
+// }
 
-else if(is_numeric($newAccount) == false)
-{
-  $settings = array(
-    'oauth_access_token' => "828704970593673217-fpjQo9kpuJ7dLSMtmmbPnPxRmo1OCEo",
-    'oauth_access_token_secret' => "SHHc9AvOBWVPGJdzyZQ5G5zOcHa6YR7wKoqyE2Lqjby5x",
-    'consumer_key' => "6je5nYuL8cVF94JitwF2UmAB8",
-    'consumer_secret' => "Y6KeSGp2LzEeM8FecE4YcKnpoI2ie1n2v8mftH46uz4h4c7ig4"
-);
-  $url = 'https://api.twitter.com/1.1/user/lookup.json';
+// else if(is_numeric($newAccount) == false)
+// {
+//   $settings = array(
+//     'oauth_access_token' => "828704970593673217-fpjQo9kpuJ7dLSMtmmbPnPxRmo1OCEo",
+//     'oauth_access_token_secret' => "SHHc9AvOBWVPGJdzyZQ5G5zOcHa6YR7wKoqyE2Lqjby5x",
+//     'consumer_key' => "6je5nYuL8cVF94JitwF2UmAB8",
+//     'consumer_secret' => "Y6KeSGp2LzEeM8FecE4YcKnpoI2ie1n2v8mftH46uz4h4c7ig4"
+// );
+//   $url = 'https://api.twitter.com/1.1/user/lookup.json';
 
-  $request = "GET";
-  $getField = "?screen_name=" . $newAccount . "&count=1";
+//   $request = "GET";
+//   $getField = "?screen_name=" . $newAccount . "&count=1";
 
-  $TwitterAPI = new TwitterAPIExchange($settings);
-  $accountNumber = $TwitterAPI -> setGetfield($getField)
-                               -> buildOauth($url, $request)
-                               -> performRequest();
-  $accountNumber = json_decode($accountNumber, true);
-  print_r($accountNumber);
-  $newAccount = $accountNumber[0]['id'];
+//   $TwitterAPI = new TwitterAPIExchange($settings);
+//   $accountNumber = $TwitterAPI -> setGetfield($getField)
+//                                -> buildOauth($url, $request)
+//                                -> performRequest();
+//   $accountNumber = json_decode($accountNumber, true);
+//   print_r($accountNumber);
+//   $newAccount = $accountNumber[0]['id'];
 
-}
+// }
 
-$UsersToFollow = array('follow' => $newAccount);
+//$UsersToFollow = array('follow' => $newAccount);
 
 
 function my_streaming_callback($data, $length, $metrics) {
@@ -167,6 +176,8 @@ $tweetsArray = json_decode($tweet, true);
          $symbol = 'WFC';
        else if(stripos($tweetsArray['text'], 'Walmart') !== false)
          $symbol = 'WALM34';
+       else if(stripos($tweetsArray['text'], 'Disney') !== false)
+         $symbol = 'DIS';
        else
           $symbol = '';
 //$results = getResults($tweetsArray);
@@ -212,37 +223,31 @@ echo "</ul>";*/
 	//	}
 
     $cursor = $collection->find();
-    
+
+    echo '<div id="feed">';
     foreach($cursor as $doc)
     {
-      if(substr($doc['text'], 0, 2) !== "RT"){
-
-       echo '<div style ="border: 5px solid #aaa;">';
-       echo $doc['symbol'] . ': ';
-       
-       echo $doc['Screen Name'] .  ': ';
-       //Displays the text of the tweet, followed by a line break
-       
-       echo  $doc['text'] . "<br>" . PHP_EOL; 
-       echo '</div>';
+      
+      if(substr($doc['text'], 0, 2) !== "RT" && strcmp($doc["Screen Name"], "") != 0){
+        $tweet = $doc['symbol'] . ': '. $doc['Screen Name'] .  ': '. $doc['text'] . "<br>";
+       echo '<div id="tweet" style ="border: 5px solid #aaa;">'.$tweet. '</div>';
        ?>
 
-       <!-- <script>
-        function pushFirstTweet()
+       <script>
+        function insertonTop()
         {
-          
-            var list = document.getElementById("stream");
-            list.insertBefore(document.getElementById("tweet"), list.childNodes[0]);
-            document.getElementById("tweet").removeAttribute("div");
-          
+          var list = document.getElementById("feed");
+          list.insertBefore(document.getElementById("tweet"), list.childNodes[0]);
+          document.getElementById("tweet").removeAttribute("id");
         }
-        pushFirstTweet();
-
-      </script> -->
-      <?php
+        insertonTop();
+       </script>
+       <?php
+      
      }
     
     }
+    echo '</div>';
 //}
 //---------------------------------------------//
 

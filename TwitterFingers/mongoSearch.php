@@ -1,15 +1,16 @@
 <html>
 
-<body style ="font-size: 25px; > <!--Telisha changed the color to black HAVEN'T SAVED YET -->
-
-<body>
+<body style="font-size:25px;">
 
 
 
 <?php 
-echo "<h1>Search Results for: " . $_GET["wholeTweet"] . "</h1><br>";
+
 global $termFound;
+global $count;
 require __DIR__. '../../../vendor/autoload.php';
+
+echo "<h1>Search Results for: " . $_GET["wholeTweet"] . "</h1><br>";
 //Connect to MongoDB client
   $m =  new MongoDB\Client;
 
@@ -22,15 +23,17 @@ require __DIR__. '../../../vendor/autoload.php';
 	   $cursor =  $collection->find();
 
 	   $count = 0;
-	   foreach($cursor as $doc){
+	   foreach($cursor as $doc)
+	   {
 
 
 	   //$file = fopen("tweets.csv", "w");
 	   //if(strpos($doc["text"] . $doc["Screen Name"], $_GET["wholeTweet"]) != false)
-	   	if(preg_match('/\b'.$_GET["wholeTweet"].'\b/i', $doc["text"] . $doc["Screen Name"]))
+	   	if(preg_match('/\b'.$_GET["wholeTweet"].'\b/i', $doc["text"]))
 	   	{
 			
-	   		if(substr($doc['text'], 0, 2) !== "RT"){
+	   		if(substr($doc['text'], 0, 2) !== "RT")
+	   		{
 	   			echo '<div style ="border: 5px solid #aaa;">';
 			   echo $doc['symbol'] . ': ';
 		       
@@ -38,21 +41,48 @@ require __DIR__. '../../../vendor/autoload.php';
 		       //Displays the text of the tweet, followed by a line break
 		       echo $doc['text'] . "<br>" . PHP_EOL; 
 		       echo '</div>';
-		   $termFound = true;
-		   $count = $count + 1;
+		   	   $count = $count + 1;
+		    }
 		}
+		else if(preg_match('/\b'.$_GET["wholeTweet"].'\b/i', $doc["Screen Name"]))
+	   	{
+			
+	   		if(substr($doc['text'], 0, 2) !== "RT")
+	   		{
+	   			echo '<div style ="border: 5px solid #aaa;">';
+			   echo $doc['symbol'] . ': ';
+		       
+		       echo $doc['Screen Name'] .  ': ';
+		       //Displays the text of the tweet, followed by a line break
+		       echo $doc['text'] . "<br>" . PHP_EOL; 
+		       echo '</div>';
+		   	   $count = $count + 1;
+		    }
+		}
+		else if(preg_match('/\b'.$_GET["wholeTweet"].'\b/i', $doc["symbol"]))
+	   	{
+			
+	   		if(substr($doc['text'], 0, 2) !== "RT")
+	   		{
+	   			echo '<div style ="border: 5px solid #aaa;">';
+			   echo $doc['symbol'] . ': ';
+		       
+		       echo $doc['Screen Name'] .  ': ';
+		       //Displays the text of the tweet, followed by a line break
+		       echo $doc['text'] . "<br>" . PHP_EOL; 
+		       echo '</div>';
+		   	   $count = $count + 1;
+		    }
 		}
 
-		//	fputcsv($file,explode(',', $str));
-}
+	}
+	if($count > 0)
+		echo "<h2>Number of tweets found: " . $count . "</h2><br>";
 
-	echo "<h2>Number of tweets found: " . $count . "</h2><br>" . PHP_EOL;
-
-
-
-	if($termFound != TRUE)
+	else
 		echo 'The term "' . $_GET["wholeTweet"] . '" was not found'."<br>";
 
 ?>
+
 </body>
 </html>

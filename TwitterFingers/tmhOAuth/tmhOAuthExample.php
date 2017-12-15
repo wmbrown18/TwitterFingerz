@@ -42,7 +42,7 @@ class tmhOAuthExample extends tmhOAuth {
       array(
         // change the values below to ones for your application
         'consumer_key'    => '6je5nYuL8cVF94JitwF2UmAB8',
-        'consumer_secret' => 'Y6KeSGp2LzEeM8FecE4YcKnpoI2ie1n2v8mftH46uz4h4c7ig4',
+        'consumer_secret' => 'gMHw1uvF7Wr487Y0XchNb5kBizjqi86v1g6g4MxVHnXdOufD27',
         'token'           => '828704970593673217-fpjQo9kpuJ7dLSMtmmbPnPxRmo1OCEo',
         'secret'          => 'SHHc9AvOBWVPGJdzyZQ5G5zOcHa6YR7wKoqyE2Lqjby5x',
         'bearer'          => 'YOUR_OAUTH2_TOKEN',
