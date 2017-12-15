@@ -46,7 +46,8 @@ Follow these instructions to successfully setup MongoDB and the MongoDB-PHP Driv
 	Follow these instructions to successfully setup MongoDB database
 
 	1. After MongoDB is installed open a command prompt window and type "mongod".
-		Let the window load the server you will see "waiting for connection on port xxxxxx". LEAVE THIS WINDOW OPEN WHILE RUNNING THE DATABASE.
+		Let the window load the server you will see "waiting for connection on port 27017". 
+		***LEAVE THIS WINDOW OPEN WHILE RUNNING THE DATABASE.***
 	2. Open another command prompt window and type "mongo"
 	3. In the command prompt type use Tweetdemo 
 		This will create the database and switch to the Tweetdemo database.
@@ -62,6 +63,7 @@ Follow these instructions to install Composer. Composer adds most of the remaini
 3. Navigate to the working directory for Xampp using cd.
 	Ex. cd xampp\htdocs
 4. Type "composer require mongodb/mongodb=^1.0.0 --ignore-platform-reqs"
+		"composer require dannyben/php-quandl"
 	Composer and all the necessary PHP libraries required for this application should now be installed in this folder.
 
 
@@ -78,16 +80,15 @@ Follow these instructions to successfully run the Finance It All site via your l
 
 
 Software Description
--The page will constantly update with tweets. Tweets are displayed in string JSON format.
+-The page will constantly update with tweets. Tweets are displayed in string JSON format and converted and displayed nicely.
 -This stream is streaming all of the tweets that are from the Twitter Account of several finincial tweeters given to us.
 -Right now the stream returns 
 
-	Tweets created by the user
-	Replies to any Tweet created by the user  
+	Tweets created by the user 
 	Manual replies, created without pressing a reply button (e.g. “@twitterapi I agree”).
+	Stock symbols associated with tweets
 
 ****NOTES****
-Note: When you want to add another you must first get the userID from gettwitterid.com. Then add to the "$Usertofollow" variable in StreamAccess.php file
-Note: We realize that this project only needs to get original tweets from users, and not mentions. We included this example of the stream to show that we have made progress in being able to connect to the 
-	 Twitter Streaming API and gather data.
+Note: Adding users to our account list needs to be fixed
+	  Stream will print empty tweets on occasion
 	

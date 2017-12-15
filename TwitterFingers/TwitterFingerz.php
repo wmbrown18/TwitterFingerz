@@ -21,13 +21,13 @@
 	<!-- Emmett Elliott code -->
 <button type="submit" form="stream" value="stream">Start Stream</button>
 <button onclick="location.href='TwitterFingerz.php'" type="button">Stop Stream</button>
-<br><br><br>
-
+ <br><br><br>
+<!--
 	<h1 style ="color:white;">Add User</h1>
-	<form action="tmhOAuth/StreamAccess.php" method="get" id="all">
-	    <button type="submit" form="all" value="Submit">Search</button>
+	<form action="" method="get" id="add">
+	    <button type="submit" form="add" value="Submit">Add</button>
 	    <input type="text" name="newAccount"><br><br>
-  	</form>
+  	</form> -->
   	<br>
 
 
@@ -54,7 +54,7 @@
 
 	<form action="mongoSearch.php" method="get" target="iframe_1" id="all">
 	<button type="submit" form="all" value="Submit">Search All</button>
-	<input type="text" onfocus ="this.value=''" name="wholeTweet"><button class="close-icon" type="reset"></button><br><br>
+	<input type="text" name="wholeTweet"><button class="close-icon" type="reset"></button><br><br>
 	</form>
 
 
